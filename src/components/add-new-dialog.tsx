@@ -9,7 +9,7 @@ import Dialog from "@mui/material/Dialog";
 import IconButton from "@mui/material/IconButton";
 import Slide from "@mui/material/Slide";
 import Typography from "@mui/material/Typography";
-import { Box } from "@mui/system";
+import Box from "@mui/material/Box";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -81,7 +81,7 @@ const AddNewDialog = ({open, onAdd, handleClose} : AddNewDialogProps) => {
 					}}
 				>
 					<form
-					onSubmit={handleSubmit(onSubmit)}
+						onSubmit={handleSubmit(onSubmit)}
 					>
 						<Stack
 							spacing={2}

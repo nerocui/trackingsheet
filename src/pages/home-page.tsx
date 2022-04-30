@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,26 +11,47 @@ import { useAuth } from "../router/private-route";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from "react-router-dom";
+import { AccountDialog } from "../components/account-dialog";
+import IconButton from "@mui/material/IconButton";
+import AccountIcon from "@mui/icons-material/AccountCircle";
 
 export const HomePage = () => {
   const auth = useAuth();
   const navigate = useNavigate();
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const handleDialogClose = useCallback(() => {
-    setDialogOpen(false);
-  }, [setDialogOpen]);
+  const [addNewDialogOpen, setAddNewDialogOpen] = useState(false);
+  const [accountDialogOpen, setAccountDialogOpen] = useState(false);
+  const handleAddNewDialogClose = useCallback(() => {
+    setAddNewDialogOpen(false);
+  }, [setAddNewDialogOpen]);
+  const handleAccountDialogClose = useCallback(() => {
+    setAccountDialogOpen(false);
+  }, [setAccountDialogOpen]);
 
   const onAddItem = useCallback(async (url: string) => {
     await addTrackable(url);
-    setDialogOpen(false);
+    setAddNewDialogOpen(false);
   }, [addTrackable]);
+
+  const onChangePassword = useCallback((password: string) => {
+    auth.changePassword(password, handleAccountDialogClose);
+  }, [auth, handleAccountDialogClose]);
+
+  const onLogout = useCallback(() => {
+    auth.signout(() => navigate('/signin'));
+  }, [auth, navigate]);
 
   return (
     <Box>
       <AddNewDialog
-        open={dialogOpen}
+        open={addNewDialogOpen}
         onAdd={onAddItem}
-        handleClose={handleDialogClose}
+        handleClose={handleAddNewDialogClose}
+      />
+      <AccountDialog
+        open={accountDialogOpen}
+        onChangePassword={onChangePassword}
+        onLogout={onLogout}
+        handleClose={handleAccountDialogClose}
       />
       <Stack>
         <AppBar position="relative">
@@ -39,12 +59,12 @@ export const HomePage = () => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Tracking Sheets
             </Typography>
-            <Button
-              color="inherit"
-              onClick={() => auth.signout(() => navigate('/signin'))}
-            >
-              Logout
-            </Button>
+            <IconButton
+              color='inherit'
+              aria-label='account'
+              onClick={() => setAccountDialogOpen(true)}>
+              <AccountIcon/>
+            </IconButton>
           </Toolbar>
         </AppBar>
         <TrackableList/>
@@ -56,7 +76,7 @@ export const HomePage = () => {
             bottom: '2rem',
             right: '2rem'
           }}
-          onClick={() => setDialogOpen(true)}
+          onClick={() => setAddNewDialogOpen(true)}
         >
           <AddIcon/>
         </Fab>

@@ -5,13 +5,11 @@ import { useAuth } from "../router/private-route";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import Link from '@mui/material/Link';
-import { invitationMatch } from "../hooks/useFirebase";
 
 interface IFormInput {
 	email: string;
 	password: string;
 	confirmPassword: string;
-	invitationCode: string;
 }
 
 export const SignupPage = () => {
@@ -24,17 +22,14 @@ export const SignupPage = () => {
 	}, [navigate]);
 
 	const onSubmit: SubmitHandler<IFormInput> = useCallback(
-		async ({ email, password, confirmPassword, invitationCode }) => {
+		async ({ email, password, confirmPassword }) => {
 			if (
 				!!email && 
 				email !== "" && 
 				!!password && 
 				password !== "" && 
 				!!confirmPassword && 
-				confirmPassword === password &&
-				!!invitationCode &&
-				invitationCode !== '' &&
-				await invitationMatch(email, invitationCode)) {
+				confirmPassword === password) {
 				signup(email, password, onSignedin);
 			}
 		},
@@ -106,19 +101,6 @@ export const SignupPage = () => {
 									<TextField
 										label="confirm password"
 										type="password"
-										variant="outlined"
-										value={field.value}
-										onChange={field.onChange}
-									/>
-								)}
-							/>
-							<Controller
-								name="invitationCode"
-								control={control}
-								defaultValue=""
-								render={({ field }) => (
-									<TextField
-										label="invitation code"
 										variant="outlined"
 										value={field.value}
 										onChange={field.onChange}
