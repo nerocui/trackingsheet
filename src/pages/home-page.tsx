@@ -41,7 +41,11 @@ export const HomePage = () => {
   }, [auth, navigate]);
 
   return (
-    <Box>
+    <Box
+      style={{
+        height: '100vh',
+      }}
+    >
       <AddNewDialog
         open={addNewDialogOpen}
         onAdd={onAddItem}
@@ -53,7 +57,11 @@ export const HomePage = () => {
         onLogout={onLogout}
         handleClose={handleAccountDialogClose}
       />
-      <Stack>
+      <Stack
+        style={{
+          height: '100%',
+        }}
+      >
         <AppBar position="relative">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -72,7 +80,7 @@ export const HomePage = () => {
           color="primary"
           aria-label="add"
           style={{
-            position: 'absolute',
+            position: 'fixed',
             bottom: '2rem',
             right: '2rem'
           }}
