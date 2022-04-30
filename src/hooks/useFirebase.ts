@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, addDoc, DocumentData } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc, DocumentData, doc, getDoc } from 'firebase/firestore/lite';
 import firebaseConfig from '../firebase.json';
 
 // Initialize Firebase
@@ -46,4 +46,20 @@ export const addTrackable = async (url: string) => {
   await addDoc(collection(db, "toAddItems"), {
     url
   });
+}
+
+export const invitationMatch = async (email: string, code: string): Promise<boolean> => {
+  const db = getFirestore(app);
+  const docRef = doc(db, 'invitations', email);
+  const docSnap = await getDoc(docRef);
+  if (!docSnap.exists()) {
+    return false;
+  } else {
+    try {
+      const data = docSnap.data();
+      return data['code'] === code.trim();
+    } catch(_) {
+      return false;
+    }
+  }
 }

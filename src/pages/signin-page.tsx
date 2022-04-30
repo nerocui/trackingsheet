@@ -1,9 +1,10 @@
-import { TextField, Button, Box, Stack, Paper } from '@mui/material';
+import { TextField, Button, Box, Stack, Paper, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import { useCallback } from 'react';
 import { useAuth } from '../router/private-route';
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import Link from '@mui/material/Link';
 
 interface IFormInput {
 	email: string,
@@ -47,6 +48,12 @@ export const SigninPage = () => {
 					<form
 						onSubmit={handleSubmit(onSubmit)}>
 						<Stack spacing={2}>
+							<Typography
+								variant='h6'
+								component='div'
+							>
+								Sign In
+							</Typography>
 							<Controller
 								name='email'
 								control={control}
@@ -71,6 +78,15 @@ export const SigninPage = () => {
 								}
 							/>
 							<Button type='submit' variant="contained">Login</Button>
+							<Link
+								component="button"
+								variant="body2"
+								onClick={() => {
+									navigate('/signup');
+								}}
+							>
+								Sign Up
+							</Link>
 						</Stack>
 					</form>
 				</Paper>    
