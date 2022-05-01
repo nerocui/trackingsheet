@@ -1,21 +1,14 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { App } from './router';
 import reportWebVitals from './reportWebVitals';
 import './hooks/useFirebase';
-import CssBaseline from '@mui/material/CssBaseline';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <React.Fragment>
-      <CssBaseline/>
-      <App />
-    </React.Fragment>
-  </React.StrictMode>
+  <App />
 );
 
 // If you want to start measuring performance in your app, pass a function
