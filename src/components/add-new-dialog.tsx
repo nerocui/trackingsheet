@@ -86,6 +86,13 @@ const AddNewDialog = ({open, onAdd, handleClose} : AddNewDialogProps) => {
 						<Stack
 							spacing={2}
 						>
+							<Typography
+								variant='body1'
+								component='div'
+								aria-label='add-new-description'
+							>
+								New items added will be picked up by the service in a few minutes.
+							</Typography>
 							<Controller
 								name='url'
 								control={control}
