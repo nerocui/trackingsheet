@@ -10,7 +10,6 @@ import {
   updateDoc,
   deleteDoc,
 } from "firebase/firestore/lite";
-import firebaseConfig from "../firebase.json";
 
 // Initialize Firebase
 const app = initializeApp({
