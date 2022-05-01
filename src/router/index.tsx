@@ -10,7 +10,7 @@ export const App = () => {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/"
+            path="/trackingsheet"
             element={
               <RequireAuth>
                 <HomePage />
@@ -18,14 +18,14 @@ export const App = () => {
             }
           />
           <Route
-            path="/signin"
+            path="/trackingsheet/signin"
             element={
               <RequirePublic>
                 <SigninPage />
               </RequirePublic>
             }
           />
-          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/trackingsheet/signup" element={<SignupPage />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

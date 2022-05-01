@@ -18,7 +18,7 @@ export const SignupPage = () => {
 	const navigate = useNavigate();
 
 	const onSignedin = useCallback(() => {
-		navigate("/");
+		navigate("/trackingsheet");
 	}, [navigate]);
 
 	const onSubmit: SubmitHandler<IFormInput> = useCallback(
@@ -114,7 +114,7 @@ export const SignupPage = () => {
 								component="button"
 								variant="body2"
 								onClick={() => {
-									navigate('/signin');
+									navigate('/trackingsheet/signin');
 								}}
 							>
 								Sign In

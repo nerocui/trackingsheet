@@ -37,7 +37,7 @@ export const HomePage = () => {
   }, [auth, handleAccountDialogClose]);
 
   const onLogout = useCallback(() => {
-    auth.signout(() => navigate('/signin'));
+    auth.signout(() => navigate('/trackingsheet/signin'));
   }, [auth, navigate]);
 
   return (
