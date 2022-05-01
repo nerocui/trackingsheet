@@ -13,7 +13,14 @@ import {
 import firebaseConfig from "../firebase.json";
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp({
+  apiKey: "AIzaSyCfAoXnpY8xgA81mjuFUdnhWMovUiLhqbQ",
+  authDomain: "taskrunner-8fc61.firebaseapp.com",
+  projectId: "taskrunner-8fc61",
+  storageBucket: "taskrunner-8fc61.appspot.com",
+  messagingSenderId: "638678091139",
+  appId: "1:638678091139:web:0432a1ea76933d6ef122b6"
+});
 
 const getData = (data: DocumentData, key: string, defaultValue?: any) => {
 	try {
